@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block menu %}{% endblock %}
+{% block form %}
+{{ super() }}
+{% for category, msg in get_flashed_messages(with_categories=True) %}
+<div class="flash {{ category }}">{{msg}}</div>
+{% endfor %}
+<style>
+    div.content h1 {
+        border-bottom: none;
+    }
+    .form-video-wrapper {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+</style>
+
+<div class="form-video-wrapper">
+    <form action="/Q" method="post" class="form-contact">
+        <p><label>Имя: </label> <input type="text" name="username" value="" required /></p>
+        <p><label>Email: </label> <input type="text" name="email" value="" required /></p>
+        <p><label>Сообщение:</label></p>
+        <p><textarea name="message" rows=7 cols=40></textarea></p>
+        <p><input type="submit" value="Отправить" /></p>
+    </form>
+
+    {% if show_video %}
+    <video width="480" height="270" controls autoplay>
+        <source src="{{ url_for('static', filename='video/1.mp4') }}" type="video/mp4">
+    </video>
+    {% endif %}
+</div>
+
+{% endblock %}

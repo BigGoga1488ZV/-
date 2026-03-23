@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block menu %}{% endblock %}
+
+{% block form %}
+{{ super() }}
+<p>Страница не найдена, пиздуй на <a href="{{url_for('main404')}}">ГЛАВНУЮ</a> страницу.</p>
+{% endblock %}
